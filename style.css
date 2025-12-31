@@ -1,0 +1,525 @@
+:root {
+    --primary-red: #E61E2B;
+    --bg-dark: #0f0f1f;
+    --card-bg: rgba(20, 20, 35, 0.8);
+    --text-white: #ffffff;
+    --text-gray: #a0a0a0;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Canvas */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Typography Helpers */
+.highlight-red {
+    color: var(--primary-red);
+}
+
+.highlight-white {
+    color: var(--text-white);
+}
+
+/* Sections */
+section {
+    width: 100%;
+    max-width: 800px;
+    /* Constrain max width for desktop readable layout */
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    text-shadow: 0 0 30px rgba(230, 30, 43, 0.4);
+}
+
+.sub-title {
+    font-size: 1.4rem;
+    color: var(--text-gray);
+}
+
+/* Cards (Donation & Tax) */
+.donation-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    flex: 1;
+    min-width: 300px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.donation-card {
+    border: 1px solid rgba(225, 29, 72, 0.3);
+    background: linear-gradient(145deg, rgba(30, 10, 20, 0.9), rgba(20, 20, 35, 0.9));
+}
+
+.card-header {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bank-name {
+    font-size: 1rem;
+    color: var(--text-gray);
+}
+
+.account-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 10px 0;
+    letter-spacing: 1px;
+}
+
+.account-owner {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+}
+
+.btn-copy {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-red);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-copy:hover {
+    background-color: #be123c;
+    transform: translateY(-2px);
+}
+
+.btn-copy:active {
+    transform: translateY(0);
+}
+
+.benefit-list {
+    list-style: none;
+}
+
+.benefit-list li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check-icon {
+    color: var(--primary-red);
+}
+
+.warning-text {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #ffd700;
+}
+
+/* Profile Section */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.profile-image-wrapper {
+    flex: 0 0 300px;
+}
+
+.profile-img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+}
+
+.party-badge-img {
+    height: 60px;
+    width: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.profile-content {
+    flex: 1;
+}
+
+.profile-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(225, 29, 72, 0.2);
+    color: var(--primary-red);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.profile-desc {
+    color: var(--text-gray);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0 0 10px 10px;
+}
+
+.accordion-content ul {
+    list-style: none;
+    padding: 20px;
+}
+
+.accordion-content li {
+    margin-bottom: 10px;
+    padding-left: 15px;
+    position: relative;
+    color: var(--text-gray);
+}
+
+.accordion-content li::before {
+    content: "•";
+    color: var(--primary-red);
+    position: absolute;
+    left: 0;
+}
+
+/* Social Section */
+.social-section {
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.section-desc {
+    color: var(--text-gray);
+    margin-bottom: 40px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    color: white;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
+}
+
+.social-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+}
+
+.social-icon:hover {
+    background: var(--primary-red);
+    transform: scale(1.1);
+    border-color: var(--primary-red);
+}
+
+/* Animation Classes */
+.animate-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.animate-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered Animation Delays */
+.social-icon:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.social-icon:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.social-icon:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.social-icon:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.social-icon:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+
+/* Youtube Highlight */
+.highlight-card {
+    background: linear-gradient(to right, rgba(20, 20, 35, 0.9), rgba(5, 5, 10, 0.9));
+    border: 1px solid var(--primary-red);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    box-shadow: 0 0 40px rgba(225, 29, 72, 0.1);
+}
+
+.content-left {
+    flex: 1;
+}
+
+.badge {
+    background: var(--primary-red);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.content-left h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.content-left p {
+    color: var(--text-gray);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--primary-red);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #be123c;
+}
+
+.content-right {
+    flex: 1;
+}
+
+.video-thumbnail {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.video-thumbnail:hover img {
+    transform: scale(1.05);
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border: 2px solid white;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 100px;
+    padding-bottom: 50px;
+    opacity: 0.7;
+}
+
+.footer-slogan {
+    font-size: 2.3rem;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.text-pure-red {
+    color: #ff0000;
+}
+
+.copyright {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 16px 32px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .profile-image-wrapper {
+        flex: 0 0 auto;
+        width: 200px;
+    }
+
+    .highlight-card {
+        flex-direction: column-reverse;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .accordion-header {
+        text-align: left;
+    }
+}
